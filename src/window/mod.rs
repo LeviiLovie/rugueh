@@ -23,7 +23,7 @@ pub struct WindowData {
     pub title: String,
     pub fps: usize,
     pub buffer: Vec<u32>,
-    pub window: Arc<Mutex<Window>>,
+    pub window: Window,
 }
 
 impl WindowData {
@@ -35,8 +35,8 @@ impl WindowData {
             title: String::from(title),
             fps,
             buffer: vec![0; width * height],
-            window: Arc::new(Mutex::new(Window::new(title, width, height, WindowOptions::default())
-                .unwrap_or_else(|e| panic!("{}", e)))),
+            window: Window::new(title, width, height, WindowOptions::default())
+                .unwrap_or_else(|e| panic!("{}", e)),
         }
     }
 
